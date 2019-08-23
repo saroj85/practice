@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Checkbox from './component/checkbox';
+import Slider from './component/slider';
+import Color  from './component/colorSelecel';
+import Form from './component/form';
+import Tab from './component/tabs'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <h1>welcome to react app</h1>
+
+    <Form/>
+
+    
+    <br></br>
+      <Checkbox />
+      <br>
+
+     
+      
+      </br> <Tab/>
+      <Slider/>
+      <br></br>
+      <Color />
+
+
     </div>
   );
 }

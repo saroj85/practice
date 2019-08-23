@@ -1,0 +1,12 @@
+    handlerChange = key => event => {
+
+        const temp = Object.assign({}, this.state);
+
+        temp[key] = event.target.value;
+
+        this.setState({
+            ...temp
+        }, () => {
+            console.log("h", this.state)
+        })
+    }
