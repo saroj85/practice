@@ -6,6 +6,8 @@ import Form from './component/form';
 import Tab from './component/tabs'
 
 function App() {
+
+
   return (
     <div className="App">
     <h1>welcome to react app</h1>
