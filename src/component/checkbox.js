@@ -95,6 +95,7 @@ class checkbox extends Component {
                             <Checkbox
                                 // key={fruits.id}
                                 type="checkbox"
+
                                 id={fruits.id}
                                 label={fruits.value}
                                 defaultValue={fruits.value}
