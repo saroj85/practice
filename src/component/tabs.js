@@ -3,29 +3,26 @@ import styled from 'styled-components';
 
 
 const Wapper = styled.div`
-        width:300px;
-        height:300px;
-        bordeR:1px solid #ccc;
-        margin:20px auto;
+    width:300px;
+    height:300px;
+    bordeR:1px solid #ccc;
+    margin:20px auto;
 `;
 const Tabs = styled.div`
     width:100%;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    .tab{
-        width:25%;
-        height:40px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-    }
-
 `;
 
 const TabData = styled.div`
-        background-color:${props => props.active ? "red" : "#ccc"};
-        color:${props => props.active ? "#fff" : "#222"};
+    background-color:${props => props.active ? "red" : "#ccc"};
+    color:${props => props.active ? "#fff" : "#222"};
+    width:25%;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 `;
 
 const TabPanel = styled.div`
@@ -39,38 +36,82 @@ class tabs extends Component {
         super(props);
         this.state = {
             tab: [
-                { id: 0, Title: 'About' },
-                { id: 1, Title: 'My Payments' },
-                { id: 2, Title: 'My Subscription' },
-                { id: 3, Title: 'My courses' },
+                { Title: 'About' },
+                { Title: 'My Payments' },
+                { Title: 'My Subscription' },
+                { Title: 'My courses' },
             ],
             activeStep: 0
         }
     }
-
-    changeTab = step => {
-        let temp = ""
-        switch (step) {
-            case 0:
-                temp = 0
-                break;
-            case 1:
-                temp = 1
-                break;
-            case 2:
-                temp = 2
-                break;
-            case 3:
-                temp = 3
-                break;
-            default:
-                break;
+    componentDidMount = () => {
+        let newwala = window.navigator.onLine;
+        // console.log("hey i am" , newwala)
+        if (newwala === true) {
+            console.log("online");
+        }
+        else {
+            console.log("offline")
         }
 
-        this.setState({
-            activeStep: temp
+    }
+
+    changeTab = (step) => {
+        this.setState(prevState => {
+            let { activeStep } = prevState;
+            switch (step) {
+                case 0:
+                    activeStep = 0;
+                    break;
+                case 1:
+                    activeStep = 1;
+                    break;
+                case 2:
+                    activeStep = 2;
+                    break;
+                case 3:
+                    activeStep = 3;
+                default:
+                    break;
+            }
+            // activeStep  = 1;
+            return { activeStep }
+
         })
     }
+
+    // changeTab = step => {
+    //     let temp = ""
+    //     switch (step) {
+    //         case 0:
+    //             temp = 0
+    //             break;
+    //         case 1:
+    //             temp = 1
+    //             break;
+    //         case 2:
+    //             temp = 2
+    //             break;
+    //         case 3:
+    //             temp = 3
+    //             break;
+    //         default:
+    //             break;
+    //     }
+
+    //     this.setState({
+    //         activeStep: temp
+    //     })
+    // }
+
+
+    // componentDidMount = () => {
+    //     setInterval(function() {
+    //         this.changeTab();
+    //     }, 3000);
+    // }
+
+
 
     render() {
         let { tab, activeStep } = this.state;

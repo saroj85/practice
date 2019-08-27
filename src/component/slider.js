@@ -21,10 +21,10 @@ const Items = Styled.div`
     // align-tems:center;
     // justify-content:center;
     flex:0 0 auto;
-    transform:translate(${props => props.slideindex}00%);
+    // transform:translate(${props => props.slideindex}00%);
+    display:${props =>props.activeItems ? "block" : "none"}
 `
-
-    ;
+;
 
 class slider extends Component {
     constructor(props) {
@@ -39,25 +39,44 @@ class slider extends Component {
                 { id: 6, name: 'peach' },
                 { id: 7, name: 'papaya' }
             ],
-            index: 0,
+            activeItems: 1,
         }
     }
-    nextSlide = () => {
+    nextSlide = (event) =>{
         this.setState(prevState =>{
-            let {slide, index} = prevState;
-            let len = slide.length;
-            console.log("len", len)
-            if(index < len){
-                index = index + 1
+            let {slide, activeItems} = prevState;
+            if(activeItems < slide.length){
+                let i = 1;
+                activeItems = activeItems + i;
             }
             else{
-                console.log("false");
+                activeItems = 0;
             }
-
+           
+            console.log("active", activeItems)
+            return {slide, activeItems}
         })
     }
+
+
+    // prevSlide = (event) =>{
+    //     this.setState(prevState =>{
+    //         let {slide, activeItems} = prevState;
+    //         if(activeItems < slide.length + 1){
+    //             let i = slide.length;
+    //             activeItems = activeItems - i;
+    //         }
+    //         else{
+    //             activeItems = 0;
+    //         }
+           
+    //         console.log("active", activeItems)
+    //         return {slide, activeItems}
+    //     })
+    // }
+
     render() {
-        const { slide } = this.state;
+        const { slide , activeItems } = this.state;
         return (
             <div style={{width:'500px',margin:'auto'}}>
                 <button onClick={this.prevSlide}>Prev</button>
@@ -66,7 +85,7 @@ class slider extends Component {
                     {
                         slide && slider.length > 0 && slide.map((item, index) => {
                             return (
-                                <Items slideindex={this.state.index} key={item.id}>{item.name}</Items>
+                                <Items activeItems={activeItems === index + 1} key={item.id}>{item.name}</Items>
                             )
                         })
                     }

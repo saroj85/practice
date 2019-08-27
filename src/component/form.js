@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import Input from './share/input';
+import Select from './share/select';
+
+
+let selectvalue = "12";
+
 
 
 class form extends Component {
@@ -14,8 +19,26 @@ class form extends Component {
                 Message: ''
             
             },
-            error:{}
+            error:{},
+            
+            city: [
+                {id: 1, name:"delhi", isSelect : false },
+                {id: 2, name:"patna" ,isSelect : false},
+                {id: 3, name:"noida", isSelect : false},
+                {id: 4, name:"supaul" , isSelect : false},
+                {id: 5, name:"nirmali" , isSelect : false},
+                {id: 6, name:"pujab", isSelect : false},
+            ]
         }
+    }
+
+
+
+
+    selectChange = event =>{
+        let name = event.target.value;
+        let indexitem = event.target.uniqid;
+        console.log(name)
     }
 
 
@@ -42,6 +65,7 @@ class form extends Component {
 
     render() {
         const { Name, Email, Address, Zip, Message } = this.state.fieldObj;
+        const {city} = this.state;
         return (
             <div>
                 <Input
@@ -61,6 +85,14 @@ class form extends Component {
                     onChange={this.handlerChange('Email')}
                     placholder="Your Name"
                     defaultValue={Email}
+                />
+
+                <Select 
+                    titel="Select City"
+                    value={city}
+                    onChange={this.selectChange}
+                    // isSelect={city.isSelect}
+                
                 />
 
             </div>
